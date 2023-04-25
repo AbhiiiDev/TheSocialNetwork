@@ -43,12 +43,12 @@ const upload =multer({storage})
 
 //MONGOOSE SETUP
 
-const PORT=process.env.PORT || 6001;
+const PORT=process.env.PORT || 5000;
 mongoose.connect(process.env.MONGO_URL,{
     useNewUrlParser:true,
     useUnifiedTopology:true,
 
 }). then(()=>{
-    app.listen(PORT,()=> console.log(`server listening at port${PORT}`))
+    app.listen(PORT,()=> console.log(`server listening at port ${PORT}`))
 })
 .catch((error)=>console.log(`${error} did not connect`));
