@@ -7,7 +7,10 @@ import multer from 'multer'
 import helmet from 'helmet'
 import morgan from 'morgan'
 import path from 'path'
+import authRoutes from './routes/auth.js'
+import userRoutes from './routes/user.js'
 import { fileURLToPath } from 'url'
+import { register } from './controllers/auth'
 
 
 //configurations
@@ -39,7 +42,17 @@ const storage=multer.diskStorage({
         cb(null,file.originalname)
     }
 })
-const upload =multer({storage})
+const upload =multer({storage});
+
+//ROUTES WITH FILES
+app.post('/auth/register',upload.single('picture',register));
+
+
+//ROUTES
+app.use('/auth',authRoutes);
+app.use('/user',userRoutes);
+
+
 
 //MONGOOSE SETUP
 
