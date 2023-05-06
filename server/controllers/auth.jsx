@@ -17,7 +17,7 @@ const {
     location,
     occupation
 } =req.body;
-const salt=await bcrypt.genSalt();
+const salt=await bcrypt.genSalt(); // salt to encrypt password 
 const passwordHash=await bcrypt.hash(password,salt);
 
 const newUser= new User({
