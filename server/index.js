@@ -8,7 +8,7 @@ import helmet from 'helmet'
 import morgan from 'morgan'
 import path from 'path'
 import authRoutes from './routes/auth.js'
-import userRoutes from './routes/user.js'
+import userRoutes from './routes/users.js'
 import { fileURLToPath } from 'url'
 import { register } from './controllers/auth'
 

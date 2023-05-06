@@ -32,3 +32,10 @@ export const getUserFriends=asycn(req,res)=>{
     res.status(404).json({message:err.message});
 }
 }
+
+//update
+export const addRemoveFriends=async(req,res)=>{
+
+    
+
+}

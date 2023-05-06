@@ -37,24 +37,23 @@ res.status(201).json(savedUser);
     } catch(error){
 res.status(500).json({error:error.message});
     }
-}
+};
 
-//Loggin in 
+export const login=async (req,res)=>{
+    try {
+        const {email,password}=req.body;
+        const user=await User.findOne({email:email});
+if (!user) return res.status(400).json({msg:"user does not exist "});
 
-export const login=async(req,res)=> {
-    try{
-        const [email,password]=req.body; //destructuring email and password from body 
-    const user=await User.findOne({email:email});
-    if(!user) return res.status(400).json({msg:'User does not exist'});
+const isMatch=await bcrypt.compare(password, user.password); //comparing enterd password with database password
 
-    const isMatch=await bcrypt.compare(password,user.password);
-    if(!isMatch) return res.status(400).json({msg:'Invalid credentials'});
+if(!isMatch) return res.status(400).json({msg:'invalid credentials'})
 
 const token=jwt.sign({id:user._id},process.env.JWT_SECRET);
-delete user.password;
+delete user.password;//to not show up to frontend
 res.status(200).json({token,user});
-    
-    }catch(err){
-        res.status(500).json({error:err.message});
+
+    } catch (error) {
+        res.status(500).json({error:error.message});
     }
 }
