@@ -14,9 +14,33 @@ import {
   PURGE,
   REGISTER
 } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import {PersistGate} from 'redux-persist/integration/react';
+import { curryGetDefaultMiddleware } from '@reduxjs/toolkit/dist/getDefaultMiddleware.js'
+
+//using redux-persist: all the info about state stored in local state
+//anytime user close the tab/browser, user info still be there till clear cache
+
+const persistConfig={key:"root",storage,version:1};
+const persistedReducer= persistReducer(persistConfig,authReducer);
+const store=configureStore({
+  reducer:persistedReducer,
+  middleware:(getDefaultMiddleware)=>
+  getDefaultMiddleware({
+    serializableCheck:{
+      ignoreActions:[FLUSH,REHYDRATE,PAUSE,PERSIST,PURGE,REGISTER],
+    },
+  })
+})
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistStore(store)}>
+      <App />
+      </PersistGate>
+    </Provider>
+  
   </React.StrictMode>,
 )
