@@ -5,6 +5,6 @@ const router=express.Router(); //routes will be configured,allows us to have in 
 
 router.post('/login',login); //from authroutes i.e auth/login (from index.js)
 
-export default auth;
+export default router;
 
 

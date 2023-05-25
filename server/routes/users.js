@@ -1,11 +1,15 @@
-import express from 'experss';
+import express from 'express';
 
 import{
     getUser,
     getUserFriends,
-    addRemoveFriends,
+    addRemoveFriends,   
 } from '../controllers/users.js'
-import { verifyToken } from '../controllers/middleware/auth.js';
+
+
+
+import { verifyToken } from '../middleware/auth.js';
+import User from '../models/User.js';
 
 
 const router=express.Router();
@@ -16,3 +20,4 @@ router.get('/:id',verifyToken,getUserFriends);
 
 //update
 router.patch('/:id/:friendId',verifyToken,addRemoveFriends);
+export default User;
