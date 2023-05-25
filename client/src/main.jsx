@@ -16,7 +16,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import {PersistGate} from 'redux-persist/integration/react';
-import { curryGetDefaultMiddleware } from '@reduxjs/toolkit/dist/getDefaultMiddleware.js'
+
 
 //using redux-persist: all the info about state stored in local state
 //anytime user close the tab/browser, user info still be there till clear cache
