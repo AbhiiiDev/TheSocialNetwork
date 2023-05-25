@@ -1,5 +1,7 @@
 import jwt from 'jsonwebtoken'
 
+//to authenticate the users
+
 export const verifyToken=async (req,res,next)=>{
     try{
         let token=req.header("Authorization");//grabbing authorization header from frontend
@@ -8,7 +10,7 @@ export const verifyToken=async (req,res,next)=>{
         }
 
 if(token.startsWith('Bearer ')){
-    token=token.slice(7,token.length).trimLeft();
+    token=token.slice(7,token.length).trimLeft();//taking everything from right side of bearer
 }
 const verified=jwt.verify(token,process.env.JWT_SECRET);
 req.user=verified;
