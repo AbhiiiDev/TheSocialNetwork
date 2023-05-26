@@ -18,7 +18,7 @@ import storage from 'redux-persist/lib/storage';
 import {PersistGate} from 'redux-persist/integration/react';
 
 
-//using redux-persist: all the info about state stored in local state
+//using redux-persist:all the info about state stored in local state
 //anytime user close the tab/browser, user info still be there till clear cache
 
 const persistConfig={key:"root",storage,version:1};
