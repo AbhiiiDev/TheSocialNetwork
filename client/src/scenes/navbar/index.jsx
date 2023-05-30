@@ -37,7 +37,7 @@ const Navbar = () => {
     const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
 
     const theme = useTheme();
-    const neutalLight = theme.palette.neutral.light;
+    const neutralLight = theme.palette.neutral.light;
     const dark = theme.palette.neutral.dark;
     const background = theme.palette.background.default;
     const primaryLight = theme.palette.primary.light;
@@ -62,7 +62,39 @@ sx={{
 >
 SocialNetwork
 </Typography>
+{isNonMobileScreens && (
+<FlexBetween backgroundColor={neutralLight} borderRadius='9px' gap='3rem' padding='0.1rem 1.5rem' >
+<InputBase placeholder='Search...'/>
+<IconButton>
+    <Search/>
+</IconButton>
+    </FlexBetween>
+
+)}
         </FlexBetween>
+       {/* {Desktop Navigation} */}
+        {isNonMobileScreens ? (
+            <FlexBetween gap='2rem'>
+  <IconButton onClick={()=> dispatch(setMode())}>
+{theme.palette.mode === 'dark' ? (
+    <DarkMode sx={{fontSize:'25px'}}/>
+    ):
+    (
+        <LightMode sx={{color:dark,fontSize:'25px'}}/>
+    
+)}
+  </IconButton>
+  <Message sx={{fontSize:'25px'}}/>
+  <Notifications sx={{fontSize:'25px'}}/>
+
+                </FlexBetween>
+            ): (
+                <IconButton>
+                    
+                </IconButton>
+            )
+        
+        }
     </FlexBetween>
 
 
