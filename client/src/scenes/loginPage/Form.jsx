@@ -10,10 +10,9 @@ import {
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import {Formik} from "formik";
 import * as yup from "yup";
-import { object, string } from 'yup';
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
-import { setLogin } from '/src/state/index.js';
+import { setLogin } from '/src/state';
 import Dropzone from "react-dropzone";
 import FlexBetween from "/src/components/FlexBetween";
 
@@ -54,9 +53,9 @@ const Form = () => {
     const { palette } = useTheme();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const isNonMobile = useMediaQuery('(min-width:600px)');
-    const isLogin = pageType === 'login';
-    const isRegister = pageType === 'register';
+    const isNonMobile = useMediaQuery("(min-width:600px)");
+    const isLogin = pageType === "login";
+    const isRegister = pageType === "register";
 
 
     const register = async (values, onSubmitProps) => {
@@ -93,7 +92,7 @@ const Form = () => {
             body: JSON.stringify(values),
         });
         const loggedIn = await loggedInResponse.json();
-        onSubmitProps.resetForm();
+        onSubmitProps.resetForm();0
         if (loggedIn) {
             dispatch(
                 setLogin({
@@ -129,7 +128,7 @@ const Form = () => {
                 setFieldValue,
                 resetForm,
             }) => (
-                <Form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit}>
                     <Box
                         display="grid"
                         gap="30px"
@@ -281,7 +280,7 @@ const Form = () => {
                             {isLogin ? "Don't have an account ? Sign Up Here " : "Already have an account ? Login here"}
                         </Typography>
                     </Box>
-                </Form>
+                </form>
             )}
         </Formik>
     );
