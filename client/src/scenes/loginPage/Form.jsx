@@ -81,7 +81,7 @@ const Form = () => {
         onSubmitProps.resetForm();
         //if user is saved or registered
         if (savedUser) {
-            setPageType('login');
+            setPageType("login");
         }
     };
 
